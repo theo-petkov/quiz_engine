@@ -1,0 +1,4 @@
+**/.vscode
+**/.pytest_cache
+**/quiz_engine_env
+*.pyc
