@@ -52,7 +52,7 @@ This should launch a testing server that can be used to check out the app's feat
 
 If not, then check out the CLI, where is says "Running on", which should point to the right port.
 
-Afterward, you may use [Postman](https://www.postman.com/downloads/), or a language of your choice, to make calls to the API.
+Afterward, you may use [Postman](https://www.postman.com/downloads/), or a language of your choice, to make calls to the API. The available routes can be found in the `routes.py` file, and extra information about how this backend works can be found in the `Plan.md` file.
 
 A tool that may help interact with the SQLite database more freely is also available [here](https://sqlitebrowser.org/dl/).
 
