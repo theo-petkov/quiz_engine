@@ -56,4 +56,6 @@ Afterward, you may use [Postman](https://www.postman.com/downloads/), or a langu
 
 A tool that may help interact with the SQLite database more freely is also available [here](https://sqlitebrowser.org/dl/).
 
+The small database itself has been shipped with the code source just for convenience, although this should not be done in a proper deployment.
+
 To close the testing server, you can press <kbd>CTRL</kbd>+<kbd>C</kbd> in the CLI, or whichever instructions are displayed next to the "Running on" part of the CLI.
