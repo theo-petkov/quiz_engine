@@ -86,7 +86,7 @@ class Answers(db.Model):
     should no longer be able to be accessed by that user.
     """
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), index=True)
     quiz_id = db.Column(db.Integer, db.ForeignKey('quizzes.id'))
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'))
     # A record of the chosen answer by the user

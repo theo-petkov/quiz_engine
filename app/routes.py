@@ -65,8 +65,44 @@ def create_user():
             )
     password = user_data['password']
     # Create user in database.
-    user = User(email=email)
+    user = Users(email=email)
     user.set_password(password)
     db.session.add(user)
     db.session.commit()
     return 'User created successfully', status.HTTP_201_CREATED
+
+
+@application.route('/api/v1/create_quiz', methods=['POST'])
+def create_quiz():
+    """Create a quiz, once supplied with a JSON payload that
+    includes the email and a password of an administrator,
+    as well as a quiz name.
+
+    The JSON should be in the format:
+    {
+        "email": "example.admin@example.com",
+        "password": "examplepass",
+        "quiz": "example title"
+    }
+
+    The response will be a short message and an HTTP status code
+    """
+    quiz_data = request.get_json()
+    if (
+            'email' not in quiz_data
+            and 'password'not in quiz_data
+            and 'quiz' not in quiz_data
+            ):
+        return 'Quiz data not provided.', status.HTTP_400_BAD_REQUEST
+    user = Users.query.filter_by(email=quiz_data['email']).first()
+    if user is None or not user.check_password(quiz_data['password']):
+        return 'Wrong credentials', status.HTTP_400_BAD_REQUEST
+    if user.admin != 1:
+        return (
+            'This user cannot perform this action',
+            status.HTTP_403_FORBIDDEN
+            )
+    quiz = Quizzes(title=quiz_data['quiz'])
+    db.session.add(quiz)
+    db.session.commit()
+    return 'Quiz created successfully', status.HTTP_201_CREATED
